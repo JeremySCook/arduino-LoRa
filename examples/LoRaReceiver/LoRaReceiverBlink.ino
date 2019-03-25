@@ -1,9 +1,13 @@
+//Added blinking of onboard light, and commented out requirement for serial to be active
+//would be good for range testing without a computer -Jeremy S. Cook 3/25/2019
+
 #include <SPI.h>
 #include <LoRa.h>
 
 void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(9600);
-  while (!Serial);
+  //while (!Serial);
 
   Serial.println("LoRa Receiver");
 
@@ -19,7 +23,7 @@ void loop() {
   if (packetSize) {
     // received a packet
     Serial.print("Received packet '");
-
+    
     // read packet
     while (LoRa.available()) {
       Serial.print((char)LoRa.read());
@@ -28,5 +32,8 @@ void loop() {
     // print RSSI of packet
     Serial.print("' with RSSI ");
     Serial.println(LoRa.packetRssi());
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(200);
+    digitalWrite(LED_BUILTIN, LOW); 
   }
 }
