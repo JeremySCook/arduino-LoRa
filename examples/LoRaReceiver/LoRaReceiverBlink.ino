@@ -1,6 +1,3 @@
-//Added blinking of onboard light, and commented out requirement for serial to be active
-//would be good for range testing without a computer -Jeremy S. Cook 3/25/2019
-
 #include <SPI.h>
 #include <LoRa.h>
 
@@ -33,7 +30,7 @@ void loop() {
     Serial.print("' with RSSI ");
     Serial.println(LoRa.packetRssi());
     digitalWrite(LED_BUILTIN, HIGH);
-    delay(200);
+    delay(2000);
     digitalWrite(LED_BUILTIN, LOW); 
   }
 }
